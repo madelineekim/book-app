@@ -59,8 +59,8 @@ model BookInstance {
   authors         String[]
   imageURL        String
   rating          Int
-  liked           Bool
-  read            Bool
+  liked           Boolean
+  read            Boolean
   userId          Int
   User            @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
