@@ -18,11 +18,21 @@ model User {
   name            String
   email           String @unique
   password        String
-  books           bookInstance[]
-  friends         User[]
+  books           BookInstance[]
+  friendships     Friendship[] @relation("UserFriendships")
 }
 
-model bookInstance {
+model Friendship {
+  id      Int   @id @default(autoincrement())
+  user1   User @relation("UserFriendships", fields: [user1Id], references: [id])
+  user1Id Int
+  user2   User @relation("UserFriendships", fields: [user2Id], references: [id])
+  user2Id Int
+
+  @@unique([user1Id, user2Id]) // Ensure each friendship is unique
+}
+
+model BookInstance {
   id              Int @id @default(autoincrement())
   title           String
   authors         String[]
