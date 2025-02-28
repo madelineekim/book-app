@@ -1,14 +1,7 @@
 import type { NextConfig } from "next";
 
-const nextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "http://localhost:5001/api/:path*", // Proxy to Express
-      },
-    ];
-  },
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
 };
 
 export default nextConfig;
